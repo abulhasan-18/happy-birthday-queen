@@ -119,4 +119,41 @@ body {
   animation: flipDown 0.45s ease-in-out;
 }
 
+/* Lovely List Items Styling */
+li {
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+ul.lovely-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.lovely-list li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.65rem;
+  line-height: 1.6;
+}
+
+ul.lovely-list li::before {
+  content: "💖";
+  position: absolute;
+  left: 0;
+  top: 0.1rem;
+  font-size: 0.875rem;
+  filter: drop-shadow(0 0 6px rgba(255, 77, 109, 0.4));
+  transition: transform 0.2s ease;
+}
+
+ul.lovely-list li:hover::before {
+  transform: scale(1.25) rotate(10deg);
+}
+
+.perspective-500 {
+  perspective: 600px;
+}
+
+
 
