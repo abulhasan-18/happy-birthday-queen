@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import PreviewWindow from "@/components/PreviewWindow";
 import Footer from "@/components/Footer";
-import BirthdayCountdown, { getNov2ISTTarget } from "@/components/BirthdayCountdown";
+import BirthdayCountdown, { checkIsNov2InIST } from "@/components/BirthdayCountdown";
 
 export default function Home() {
   const [currentScene, setCurrentScene] = useState<number>(1);
@@ -13,15 +13,12 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true);
-    // Check if Nov 2 00:00:00 IST has arrived
-    const target = getNov2ISTTarget();
+    // Unlocked strictly on November 2 in IST (+05:30) or with ?preview=true
     const now = new Date().getTime();
-
-    // Check if URL has ?preview=true or if target time has already arrived
     const params = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
     const isPreview = params?.get("preview") === "true";
 
-    if (now >= target || isPreview) {
+    if (checkIsNov2InIST(now) || isPreview) {
       setIsUnlocked(true);
     }
   }, []);

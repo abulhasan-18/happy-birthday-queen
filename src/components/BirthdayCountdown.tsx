@@ -13,19 +13,56 @@ interface TimeRemaining {
   isUnlocked: boolean;
 }
 
-export function getNov2ISTTarget(): number {
-  const currentYear = new Date().getFullYear();
-  // Target: November 2, 00:00:00 IST (+05:30)
-  // Anchored to this year's November 2 (2026).
-  // Once November 2 arrives, it stays unlocked FOREVER on Nov 3, Nov 4, and beyond!
-  // It will NEVER re-lock or count down to next year.
-  const targetYear = currentYear > 2026 ? 2026 : currentYear;
+/**
+ * Checks whether the current moment falls strictly on November 2 in Indian Standard Time (IST, UTC+5:30).
+ * Nov 2 (00:00:00 IST to 23:59:59 IST) is Her Birthday!
+ */
+export function checkIsNov2InIST(nowMs: number = Date.now()): boolean {
+  // IST is strictly UTC + 5:30 (5.5 hours = 19,800,000 ms)
+  const ist = new Date(nowMs + 5.5 * 3600 * 1000);
+  const month = ist.getUTCMonth(); // 0-indexed: 10 is November
+  const day = ist.getUTCDate();
+  return month === 10 && day === 2;
+}
+
+/**
+ * Calculates the next upcoming November 2 00:00:00 IST timestamp.
+ * If Nov 2 of the current year has already ended (Nov 3 onwards),
+ * it targets November 2 of the next year.
+ */
+export function getNextNov2ISTTarget(nowMs: number = Date.now()): number {
+  const ist = new Date(nowMs + 5.5 * 3600 * 1000);
+  const year = ist.getUTCFullYear();
+  const month = ist.getUTCMonth(); // 10 is November
+  const day = ist.getUTCDate();
+
+  let targetYear = year;
+  // If we are past Nov 2 in the current year (Nov 3 onwards or month > Nov):
+  if (month > 10 || (month === 10 && day > 2)) {
+    targetYear = year + 1;
+  }
   return new Date(`${targetYear}-11-02T00:00:00+05:30`).getTime();
 }
 
-function calculateTimeRemaining(targetTime: number): TimeRemaining {
-  const now = new Date().getTime();
-  const diff = targetTime - now;
+// Backwards compatibility alias
+export const getNov2ISTTarget = getNextNov2ISTTarget;
+
+function calculateTimeRemaining(nowMs: number): TimeRemaining {
+  // If today is November 2 in IST: UNLOCKED!
+  if (checkIsNov2InIST(nowMs)) {
+    return {
+      totalMs: 0,
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+      isUnlocked: true,
+    };
+  }
+
+  // Otherwise, locked and counting down to the next upcoming Nov 2 IST
+  const target = getNextNov2ISTTarget(nowMs);
+  const diff = target - nowMs;
 
   if (diff <= 0) {
     return {
@@ -70,10 +107,10 @@ export default function BirthdayCountdown({ onUnlock }: BirthdayCountdownProps) 
 
   useEffect(() => {
     setMounted(true);
-    const target = getNov2ISTTarget();
 
     const updateTimer = () => {
-      const remaining = calculateTimeRemaining(target);
+      const now = Date.now();
+      const remaining = calculateTimeRemaining(now);
       setTimeLeft(remaining);
       if (remaining.isUnlocked && onUnlock) {
         onUnlock();
