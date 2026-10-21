@@ -14,16 +14,13 @@ interface TimeRemaining {
 }
 
 export function getNov2ISTTarget(): number {
-  const now = new Date();
-  const currentYear = now.getFullYear();
-  // Target: Nov 2, 00:00:00 IST (+05:30)
-  let target = new Date(`${currentYear}-11-02T00:00:00+05:30`).getTime();
-
-  // If Nov 2 has already ended this year (more than 24h past Nov 2 00:00 IST), target next year
-  if (now.getTime() > target + 24 * 60 * 60 * 1000) {
-    target = new Date(`${currentYear + 1}-11-02T00:00:00+05:30`).getTime();
-  }
-  return target;
+  const currentYear = new Date().getFullYear();
+  // Target: November 2, 00:00:00 IST (+05:30)
+  // Anchored to this year's November 2 (2026).
+  // Once November 2 arrives, it stays unlocked FOREVER on Nov 3, Nov 4, and beyond!
+  // It will NEVER re-lock or count down to next year.
+  const targetYear = currentYear > 2026 ? 2026 : currentYear;
+  return new Date(`${targetYear}-11-02T00:00:00+05:30`).getTime();
 }
 
 function calculateTimeRemaining(targetTime: number): TimeRemaining {
