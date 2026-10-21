@@ -100,12 +100,12 @@ export default function BirthdayCountdown({ onUnlock }: BirthdayCountdownProps) 
       </p>
 
       {/* FLIP CLOCK CONTAINER */}
-      <div className="flex items-center justify-center gap-2 sm:gap-4 md:gap-6 flex-wrap">
+      <div className="flex items-center justify-center gap-1 min-[380px]:gap-2 sm:gap-4 md:gap-6 flex-nowrap max-w-full px-1">
         {/* DAYS FLIP CARD: Only shown when days > 0 (Never shows 0 days!) */}
         {timeLeft.days > 0 && (
           <>
             <FlipCard value={timeLeft.days} label={timeLeft.days === 1 ? "Day" : "Days"} />
-            <span className="text-2xl sm:text-4xl text-rose-400/80 font-bold mb-6">:</span>
+            <span className="text-lg sm:text-3xl text-rose-400/80 font-bold mb-3 sm:mb-6 select-none">:</span>
           </>
         )}
 
@@ -113,16 +113,16 @@ export default function BirthdayCountdown({ onUnlock }: BirthdayCountdownProps) 
         {(timeLeft.days > 0 || timeLeft.hours > 0) && (
           <>
             <FlipCard value={timeLeft.hours} label="Hours" />
-            <span className="text-2xl sm:text-4xl text-rose-400/80 font-bold mb-6">:</span>
+            <span className="text-lg sm:text-3xl text-rose-400/80 font-bold mb-3 sm:mb-6 select-none">:</span>
           </>
         )}
 
         {/* MINUTES FLIP CARD */}
-        <FlipCard value={timeLeft.minutes} label="Minutes" />
-        <span className="text-2xl sm:text-4xl text-rose-400/80 font-bold mb-6">:</span>
+        <FlipCard value={timeLeft.minutes} label="Mins" />
+        <span className="text-lg sm:text-3xl text-rose-400/80 font-bold mb-3 sm:mb-6 select-none">:</span>
 
         {/* SECONDS FLIP CARD (Flips every second!) */}
-        <FlipCard value={timeLeft.seconds} label="Seconds" />
+        <FlipCard value={timeLeft.seconds} label="Secs" />
       </div>
 
       {/* Bottom Dedication: With Love, Smokiee • Always & Forever Love */}

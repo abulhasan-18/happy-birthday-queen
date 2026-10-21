@@ -240,7 +240,7 @@ export default function Scene1Slingshot({ onComplete, autoShoot = true }: Scene1
     };
   }, [autoShoot, fireHeart]);
 
-  // Manual interactive shoot
+  // Manual interactive shoot (Touch & Click responsive)
   const handleManualShoot = () => {
     if (projectile.flying || targetHit) return;
     setPullProgress(1);
@@ -254,27 +254,27 @@ export default function Scene1Slingshot({ onComplete, autoShoot = true }: Scene1
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full min-h-[440px] sm:min-h-[500px] md:min-h-[540px] bg-[#FAF6EE] select-none overflow-hidden flex flex-col justify-between p-4 sm:p-6 transition-all duration-700"
+      className="relative w-full h-full min-h-[420px] sm:min-h-[500px] md:min-h-[540px] bg-[#FAF6EE] select-none touch-manipulation overflow-hidden flex flex-col justify-between p-3 sm:p-6 transition-all duration-700"
       style={{
         backgroundImage: `radial-gradient(#e5decf 1.2px, transparent 1.2px)`,
         backgroundSize: "28px 28px",
       }}
     >
-      {/* Top Titles: "a little something, for you" & "For Queen Niveda" */}
-      <div className="z-10 text-center space-y-1 sm:space-y-2 pt-2 animate-fadeIn">
-        <p className="font-serif italic text-stone-700 text-lg sm:text-2xl tracking-wide opacity-90">
+      {/* Top Titles: "a little something, for you" & "To Queen uhhh" */}
+      <div className="z-10 text-center space-y-1 sm:space-y-2 pt-1 animate-fadeIn">
+        <p className="font-serif italic text-stone-700 text-base sm:text-2xl tracking-wide opacity-90">
           &ldquo;a little something, for you&rdquo;
         </p>
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/90 rounded-full shadow-sm">
-          <Crown className="w-4 h-4 text-amber-500 animate-bounce" />
-          <span className="text-xs sm:text-sm font-bold tracking-wider text-stone-800 uppercase font-sans">
+        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-0.5 sm:px-3.5 sm:py-1 bg-white/80 backdrop-blur-sm border border-stone-200/90 rounded-full shadow-sm">
+          <Crown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500 animate-bounce" />
+          <span className="text-[11px] sm:text-sm font-bold tracking-wider text-stone-800 uppercase font-sans">
             To Queen uhhh
           </span>
           <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
         </div>
       </div>
 
-      {/* UNIFIED SVG VIEWPORT (1000 x 600) FOR PIXEL-PERFECT ALIGNMENT ON ALL DEVICES */}
+      {/* UNIFIED SVG VIEWPORT (1000 x 600) FOR PIXEL-PERFECT ALIGNMENT ON ALL MOBILE & DESKTOP SCREENS */}
       <svg
         className="absolute inset-0 w-full h-full select-none"
         viewBox="0 0 1000 600"
@@ -316,8 +316,18 @@ export default function Scene1Slingshot({ onComplete, autoShoot = true }: Scene1
           </filter>
         </defs>
 
+        {/* LARGE INVISIBLE TOUCH/CLICK TARGET OVER SLINGSHOT FOR EFFORTLESS MOBILE TAPPING */}
+        <circle
+          cx="240"
+          cy="460"
+          r="190"
+          fill="transparent"
+          className="cursor-pointer"
+          onClick={handleManualShoot}
+        />
+
         {/* 1. WOODEN SLINGSHOT Y-FORK */}
-        <g id="slingshot-fork">
+        <g id="slingshot-fork" className="cursor-pointer" onClick={handleManualShoot}>
           {/* Handle Base & Ground Shadow */}
           <ellipse cx="240" cy="565" rx="35" ry="10" fill="#dfd6c6" opacity="0.8" />
 
@@ -489,16 +499,20 @@ export default function Scene1Slingshot({ onComplete, autoShoot = true }: Scene1
         ))}
       </svg>
 
-      {/* BOTTOM CONTROLS & STATUS: "Pull & Release" */}
+      {/* BOTTOM CONTROLS & STATUS: "Tap the slingshot" */}
       <div className="z-10 flex flex-col items-center justify-center gap-2 pb-2">
-        <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-stone-900/10 backdrop-blur-md text-stone-700 text-xs sm:text-sm font-medium tracking-wide border border-stone-300/60 shadow-sm">
+        <button
+          onClick={handleManualShoot}
+          className="cursor-pointer active:scale-95 transition-all flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-white/90 hover:bg-white active:bg-rose-50 backdrop-blur-md text-stone-800 text-xs sm:text-sm font-semibold tracking-wide border border-rose-300/60 shadow-[0_4px_12px_rgba(255,77,109,0.15)] select-none touch-manipulation"
+        >
+          <span className="text-sm sm:text-base animate-bounce">👆</span>
           <span>{statusMessage}</span>
           {autoShootCountdown !== null && !targetHit && !projectile.flying && (
             <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-rose-500 text-white text-[10px] font-bold animate-pulse">
               {autoShootCountdown}s
             </span>
           )}
-        </div>
+        </button>
       </div>
     </div>
   );

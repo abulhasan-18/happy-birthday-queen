@@ -62,7 +62,7 @@ export default function Scene2Reveal({ onComplete, autoProceed = true }: Scene2P
   }, [autoProceed, line1Text, line2Text, onComplete]);
 
   return (
-    <div className="relative w-full h-full min-h-[420px] sm:min-h-[480px] md:min-h-[520px] bg-[#ff4d6d] overflow-hidden flex flex-col items-center justify-center p-6 sm:p-10 select-none animate-slideIn">
+    <div className="relative w-full h-full min-h-[420px] sm:min-h-[480px] md:min-h-[520px] bg-[#ff4d6d] overflow-hidden flex flex-col items-center justify-center p-4 sm:p-10 select-none touch-manipulation animate-slideIn">
       {/* Subtle background ambient floating hearts */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
         {[...Array(16)].map((_, i) => (
@@ -83,7 +83,7 @@ export default function Scene2Reveal({ onComplete, autoProceed = true }: Scene2P
       </div>
 
       {/* Main Animated Text Box */}
-      <div className="relative z-10 flex flex-col items-center text-center max-w-xl space-y-3 sm:space-y-5">
+      <div className="relative z-10 flex flex-col items-center text-center max-w-xl space-y-2.5 sm:space-y-5 px-2">
         {/* Crown Accent */}
         <div
           className={`transition-all duration-700 transform ${
@@ -92,48 +92,48 @@ export default function Scene2Reveal({ onComplete, autoProceed = true }: Scene2P
               : "opacity-0 scale-50 -translate-y-8"
           }`}
         >
-          <div className="relative inline-flex items-center justify-center p-3 rounded-full bg-white/20 backdrop-blur-md shadow-[0_0_30px_rgba(255,255,255,0.4)] border border-white/40">
-            <Crown className="w-8 h-8 sm:w-10 sm:h-10 text-amber-300 drop-shadow-[0_0_12px_rgba(251,191,36,0.9)] animate-pulse" />
-            <Sparkles className="w-4 h-4 text-white absolute -top-1 -right-1 animate-spin" />
+          <div className="relative inline-flex items-center justify-center p-2.5 sm:p-3 rounded-full bg-white/20 backdrop-blur-md shadow-[0_0_30px_rgba(255,255,255,0.4)] border border-white/40">
+            <Crown className="w-7 h-7 sm:w-10 sm:h-10 text-amber-300 drop-shadow-[0_0_12px_rgba(251,191,36,0.9)] animate-pulse" />
+            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white absolute -top-1 -right-1 animate-spin" />
           </div>
         </div>
 
         {/* Letter-by-letter: "Happy Birthday" */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.25)] min-h-[48px] sm:min-h-[72px]">
+        <h1 className="text-3xl min-[380px]:text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.25)] min-h-[40px] sm:min-h-[72px]">
           {displayedLine1}
           {displayedLine1.length < line1Text.length && (
-            <span className="inline-block w-1 h-8 sm:h-14 bg-white/80 ml-1 animate-pulse align-middle" />
+            <span className="inline-block w-1 h-7 sm:h-14 bg-white/80 ml-1 animate-pulse align-middle" />
           )}
         </h1>
 
-        {/* Cursive Subtitle: "Queen Niveda" */}
-        <div className="min-h-[44px] sm:min-h-[64px] flex items-center justify-center">
-          <p className="font-cursive text-3xl sm:text-5xl md:text-6xl text-amber-200 drop-shadow-[0_2px_12px_rgba(255,215,0,0.5)] font-bold">
+        {/* Cursive Subtitle: "Queen uhhh" */}
+        <div className="min-h-[38px] sm:min-h-[64px] flex items-center justify-center">
+          <p className="font-cursive text-3xl min-[380px]:text-4xl sm:text-5xl md:text-6xl text-amber-200 drop-shadow-[0_2px_12px_rgba(255,215,0,0.5)] font-bold">
             {displayedLine2}
             {displayedLine1.length >= line1Text.length &&
               displayedLine2.length < line2Text.length && (
-                <span className="inline-block w-1 h-7 sm:h-10 bg-amber-200 ml-1 animate-pulse align-middle" />
+                <span className="inline-block w-1 h-6 sm:h-10 bg-amber-200 ml-1 animate-pulse align-middle" />
               )}
           </p>
         </div>
 
         {/* Sweet Royal Note */}
         {crownLanded && (
-          <p className="text-white/90 text-sm sm:text-base font-light tracking-wider max-w-md pt-2 animate-fadeIn">
+          <p className="text-white/90 text-xs sm:text-base font-light tracking-wider max-w-md pt-1 sm:pt-2 animate-fadeIn">
             ✨ To the most extraordinary Queen who lights up every room ✨
           </p>
         )}
 
         {/* Manual Continue Button */}
         {canProceed && (
-          <div className="pt-4 animate-fadeIn">
+          <div className="pt-3 sm:pt-4 animate-fadeIn">
             <button
               onClick={onComplete}
-              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-rose-600 font-semibold text-sm sm:text-base shadow-lg hover:shadow-white/30 hover:bg-rose-50 transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
+              className="group inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white text-rose-600 font-semibold text-xs sm:text-base shadow-lg hover:shadow-white/30 hover:bg-rose-50 transition-all transform hover:scale-105 active:scale-95 cursor-pointer touch-manipulation"
             >
               <span>Bloom Your Love Tree</span>
-              <Heart className="w-4 h-4 text-rose-500 fill-rose-500 group-hover:scale-110 transition-transform" />
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-500 fill-rose-500 group-hover:scale-110 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         )}

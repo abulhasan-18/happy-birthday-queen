@@ -69,7 +69,7 @@ export default function DemoPage() {
               <span className="text-sm">🙄🥴</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-bold font-serif text-white tracking-tight leading-tight">
+            <h1 className="text-2xl min-[380px]:text-3xl sm:text-5xl font-bold font-serif text-white tracking-tight leading-tight">
               <span>Opening Queen uhhh’s Gift in</span>
             </h1>
 
