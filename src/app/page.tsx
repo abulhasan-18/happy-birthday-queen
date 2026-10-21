@@ -44,8 +44,8 @@ export default function Home() {
       <div className="fixed top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
       <div className="fixed bottom-1/4 right-1/4 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse" style={{ animationDelay: "2s" }}></div>
 
-      {/* Main Header */}
-      <Header onReplay={handleReplay} />
+      {/* Main Header (Only shown after gift unlocks) */}
+      {isUnlocked && <Header onReplay={handleReplay} />}
 
       {/* Main Content Area */}
       <div className="w-full flex-1 max-w-6xl px-3 sm:px-6 flex flex-col items-center justify-center my-3 sm:my-6">

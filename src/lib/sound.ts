@@ -7,19 +7,7 @@ class SoundFX {
   private melodyTimeout: any = null;
 
   constructor() {
-    if (typeof window !== "undefined") {
-      // Auto-unlock audio context on first user click/touch anywhere on screen
-      const unlockAudio = () => {
-        this.initCtx();
-        if (!this.isPlayingMusic) {
-          this.startMusic();
-        }
-        window.removeEventListener("click", unlockAudio);
-        window.removeEventListener("touchstart", unlockAudio);
-      };
-      window.addEventListener("click", unlockAudio, { once: true });
-      window.addEventListener("touchstart", unlockAudio, { once: true });
-    }
+    // Music is only started inside the gift scenes, never on the countdown page
   }
 
   private initCtx() {
@@ -209,6 +197,14 @@ class SoundFX {
     };
 
     playNext();
+  }
+
+  public stopMusic() {
+    this.isPlayingMusic = false;
+    if (this.melodyTimeout) {
+      clearTimeout(this.melodyTimeout);
+      this.melodyTimeout = null;
+    }
   }
 }
 
