@@ -248,29 +248,43 @@ export default function EnvelopeSurprise() {
                     Polaroids &amp; Milestones
                   </p>
 
-                  <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full max-w-md">
-                    {/* Polaroid 1 */}
-                    <div className="bg-[#FAF6EE] p-2.5 pb-3 rounded-lg border border-stone-200 shadow-sm rotate-[-2deg] hover:rotate-0 transition-transform">
-                      <div className="w-full aspect-square bg-gradient-to-tr from-rose-200 to-amber-100 rounded flex flex-col items-center justify-center text-center p-2">
-                        <span className="text-3xl mb-1">👑</span>
-                        <span className="text-[10px] font-bold text-stone-700">Her Majesty</span>
+                  <div className="grid grid-cols-2 gap-3 sm:gap-5 w-full max-w-md px-1">
+                    {/* Polaroid 1: Queen uhhh */}
+                    <div className="bg-white p-2 sm:p-2.5 pb-3 rounded-xl border border-[#D7C9B1] shadow-md rotate-[-2.5deg] hover:rotate-0 hover:scale-105 transition-all duration-300">
+                      <div className="relative w-full aspect-[4/5] sm:aspect-square rounded-lg overflow-hidden bg-stone-100 shadow-inner">
+                        {/* Washi Tape Strip */}
+                        <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-10 h-3.5 bg-rose-300/80 backdrop-blur-2xs rotate-[-3deg] z-10 shadow-2xs"></div>
+                        <img
+                          src="/images/queen.jpg"
+                          alt="Queen uhhh"
+                          className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
-                      <p className="mt-2 text-center text-[10px] font-serif italic text-stone-600">
-                        Rule #1: Queen is always right
+                      <p className="mt-2 text-center text-[10px] sm:text-xs font-serif italic text-stone-700 font-medium">
+                        Her Majesty Queen uhhh 👑
                       </p>
                     </div>
 
-                    {/* Polaroid 2 */}
-                    <div className="bg-[#FAF6EE] p-2.5 pb-3 rounded-lg border border-stone-200 shadow-sm rotate-[2deg] hover:rotate-0 transition-transform">
-                      <div className="w-full aspect-square bg-gradient-to-tr from-amber-200 to-rose-100 rounded flex flex-col items-center justify-center text-center p-2">
-                        <span className="text-3xl mb-1">💖</span>
-                        <span className="text-[10px] font-bold text-stone-700">Infinite Love</span>
+                    {/* Polaroid 2: Smokiee & Queen */}
+                    <div className="bg-white p-2 sm:p-2.5 pb-3 rounded-xl border border-[#D7C9B1] shadow-md rotate-[2.5deg] hover:rotate-0 hover:scale-105 transition-all duration-300">
+                      <div className="relative w-full aspect-[4/5] sm:aspect-square rounded-lg overflow-hidden bg-stone-100 shadow-inner">
+                        {/* Washi Tape Strip */}
+                        <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-10 h-3.5 bg-amber-300/80 backdrop-blur-2xs rotate-[2deg] z-10 shadow-2xs"></div>
+                        <img
+                          src="/images/smokiee-queen.jpg"
+                          alt="Smokiee & Queen"
+                          className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
-                      <p className="mt-2 text-center text-[10px] font-serif italic text-stone-600">
-                        Always &amp; Forever With You
+                      <p className="mt-2 text-center text-[10px] sm:text-xs font-serif italic text-stone-700 font-medium">
+                        Smokiee &amp; Queen • Forever ❤️
                       </p>
                     </div>
                   </div>
+
+                  <p className="text-[11px] text-stone-500 italic font-serif pt-1">
+                    Rule #1: Queen is always right • Always &amp; Forever ✨
+                  </p>
                 </div>
               )}
 
