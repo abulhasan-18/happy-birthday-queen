@@ -215,17 +215,21 @@ export default function EnvelopeSurprise() {
                   </div>
 
                   {/* Retro Mini Cassette Player */}
-                  <div className="w-full max-w-sm bg-[#FAF6EE] border border-stone-300 rounded-xl p-3 flex items-center justify-between gap-3 shadow-2xs">
-                    <div className="w-10 h-10 rounded-lg bg-stone-900 text-amber-400 flex items-center justify-center font-bold text-xs shrink-0">
-                      🎶
+                  <div className="w-full max-w-sm bg-[#FAF6EE] border border-[#D7C9B1] rounded-xl p-3 flex items-center justify-between gap-3 shadow-2xs">
+                    <div className="w-10 h-10 rounded-lg bg-stone-900 text-amber-400 flex items-center justify-center font-bold text-sm shrink-0 animate-pulse">
+                      🎵
                     </div>
                     <div className="flex-1 text-left min-w-0">
-                      <p className="text-xs font-bold text-stone-800 truncate">Queen’s Royal Lullaby</p>
-                      <p className="text-[10px] text-stone-500 italic">A Smokiee Production • Playing</p>
+                      <p className="text-xs font-bold text-stone-800 truncate">
+                        Ulagap Pookalin Vaasam 🌸
+                      </p>
+                      <p className="text-[10px] text-rose-600 font-medium italic truncate">
+                        Yenendraal Un Pirandhanaal • On Loop 🔁
+                      </p>
                     </div>
                     <button
                       onClick={toggleMusic}
-                      className="px-2.5 py-1 rounded-full bg-rose-500 text-white text-[11px] font-bold shadow-xs active:scale-95 cursor-pointer shrink-0"
+                      className="px-3 py-1 rounded-full bg-rose-500 hover:bg-rose-600 text-white text-[11px] font-bold shadow-xs active:scale-95 cursor-pointer shrink-0 transition-colors"
                     >
                       {isPlayingMusic ? "Pause" : "Play"}
                     </button>

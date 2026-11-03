@@ -4,10 +4,10 @@
 class SoundFX {
   private ctx: AudioContext | null = null;
   private isPlayingMusic: boolean = false;
-  private melodyTimeout: any = null;
+  private audioEl: HTMLAudioElement | null = null;
 
   constructor() {
-    // Music is only started inside the gift scenes, never on the countdown page
+    // Audio is initialized on first user interaction
   }
 
   private initCtx() {
@@ -262,57 +262,43 @@ class SoundFX {
     } catch {}
   }
 
-  // Romantic music box loop - plays forever
+  // Play uploaded birthday song on infinite loop
   public startMusic() {
-    if (this.isPlayingMusic) return;
-    this.initCtx();
-    if (!this.ctx) return;
-
+    if (typeof window === "undefined") return;
     this.isPlayingMusic = true;
 
-    // Gentle romantic melody notes (Happy Birthday / Canon inspired lullaby)
-    const notes: [number, number][] = [
-      [523.25, 0.4], [523.25, 0.4], [587.33, 0.8], [523.25, 0.8], [698.46, 0.8], [659.25, 1.2],
-      [523.25, 0.4], [523.25, 0.4], [587.33, 0.8], [523.25, 0.8], [783.99, 0.8], [698.46, 1.2],
-      [523.25, 0.4], [523.25, 0.4], [1046.5, 0.8], [880.0, 0.8], [698.46, 0.8], [659.25, 0.8], [587.33, 0.8],
-      [932.33, 0.4], [932.33, 0.4], [880.0, 0.8], [698.46, 0.8], [783.99, 0.8], [698.46, 1.6]
-    ];
+    try {
+      if (!this.audioEl) {
+        this.audioEl = new Audio("/audio/birthday-song.mp3");
+        this.audioEl.loop = true;
+        this.audioEl.volume = 0.85;
 
-    let noteIdx = 0;
+        // Infallible fallback loop event for mobile Safari / Chrome
+        this.audioEl.addEventListener("ended", () => {
+          if (this.isPlayingMusic && this.audioEl) {
+            this.audioEl.currentTime = 0;
+            this.audioEl.play().catch(() => {});
+          }
+        });
+      }
 
-    const playNext = () => {
-      if (!this.ctx) return;
-      const [freq, dur] = notes[noteIdx];
-      const now = this.ctx.currentTime;
-
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(freq, now);
-
-      gain.gain.setValueAtTime(0.065, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + dur * 0.9);
-
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-
-      osc.start(now);
-      osc.stop(now + dur);
-
-      noteIdx = (noteIdx + 1) % notes.length;
-      this.melodyTimeout = setTimeout(playNext, dur * 700);
-    };
-
-    playNext();
+      this.audioEl.play().catch(() => {
+        // Autoplay policy: will trigger on next click/tap
+      });
+    } catch {}
   }
 
   public stopMusic() {
     this.isPlayingMusic = false;
-    if (this.melodyTimeout) {
-      clearTimeout(this.melodyTimeout);
-      this.melodyTimeout = null;
+    if (this.audioEl) {
+      try {
+        this.audioEl.pause();
+      } catch {}
     }
+  }
+
+  public getIsPlayingMusic(): boolean {
+    return this.isPlayingMusic && !!this.audioEl && !this.audioEl.paused;
   }
 }
 
