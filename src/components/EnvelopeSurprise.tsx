@@ -224,7 +224,7 @@ export default function EnvelopeSurprise() {
                         Ulagap Pookalin Vaasam 🌸
                       </p>
                       <p className="text-[10px] text-rose-600 font-medium italic truncate">
-                        Yenendraal Un Pirandhanaal • On Loop 🔁
+                        Yenendraal Un Pirandhanaal
                       </p>
                     </div>
                     <button
