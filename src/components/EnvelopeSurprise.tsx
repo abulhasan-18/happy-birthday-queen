@@ -251,13 +251,13 @@ export default function EnvelopeSurprise() {
                   <div className="grid grid-cols-2 gap-3 sm:gap-5 w-full max-w-md px-1">
                     {/* Polaroid 1: Queen uhhh */}
                     <div className="bg-white p-2 sm:p-2.5 pb-3 rounded-xl border border-[#D7C9B1] shadow-md rotate-[-2.5deg] hover:rotate-0 hover:scale-105 transition-all duration-300">
-                      <div className="relative w-full aspect-[4/5] sm:aspect-square rounded-lg overflow-hidden bg-stone-100 shadow-inner">
+                      <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-stone-100 shadow-inner">
                         {/* Washi Tape Strip */}
                         <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-10 h-3.5 bg-rose-300/80 backdrop-blur-2xs rotate-[-3deg] z-10 shadow-2xs"></div>
                         <img
                           src="/images/queen.jpg"
                           alt="Queen uhhh"
-                          className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                       <p className="mt-2 text-center text-[10px] sm:text-xs font-serif italic text-stone-700 font-medium">
@@ -267,7 +267,7 @@ export default function EnvelopeSurprise() {
 
                     {/* Polaroid 2: Smokiee & Queen */}
                     <div className="bg-white p-2 sm:p-2.5 pb-3 rounded-xl border border-[#D7C9B1] shadow-md rotate-[2.5deg] hover:rotate-0 hover:scale-105 transition-all duration-300">
-                      <div className="relative w-full aspect-[4/5] sm:aspect-square rounded-lg overflow-hidden bg-stone-100 shadow-inner">
+                      <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-stone-100 shadow-inner">
                         {/* Washi Tape Strip */}
                         <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-10 h-3.5 bg-amber-300/80 backdrop-blur-2xs rotate-[2deg] z-10 shadow-2xs"></div>
                         <img
