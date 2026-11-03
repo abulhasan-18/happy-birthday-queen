@@ -13,6 +13,8 @@ export default function FlipCard({ value, label }: FlipCardProps) {
   const [prevVal, setPrevVal] = useState(formattedValue);
   const [isFlipping, setIsFlipping] = useState(false);
 
+  const isThreeDigits = String(currentVal).length >= 3;
+
   useEffect(() => {
     if (formattedValue !== currentVal) {
       setPrevVal(currentVal);
@@ -30,7 +32,13 @@ export default function FlipCard({ value, label }: FlipCardProps) {
   return (
     <div className="flex flex-col items-center">
       {/* 3D Flip Card Container */}
-      <div className="relative w-[3.5rem] h-[4.5rem] min-[380px]:w-[3.9rem] min-[380px]:h-[5rem] sm:w-22 sm:h-26 md:w-26 md:h-30 rounded-xl sm:rounded-2xl bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 border border-rose-500/30 shadow-[0_6px_25px_rgba(255,77,109,0.25)] flex items-center justify-center select-none overflow-hidden perspective-500">
+      <div
+        className={`relative ${
+          isThreeDigits
+            ? "w-[4.2rem] min-[380px]:w-[4.8rem] sm:w-28 md:w-32 px-1"
+            : "w-[3.5rem] min-[380px]:w-[3.9rem] sm:w-22 md:w-26"
+        } h-[4.5rem] min-[380px]:h-[5rem] sm:h-26 md:h-30 rounded-xl sm:rounded-2xl bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 border border-rose-500/30 shadow-[0_6px_25px_rgba(255,77,109,0.25)] flex items-center justify-center select-none overflow-hidden perspective-500 transition-all duration-300`}
+      >
         {/* Subtle Horizontal Divider line across middle */}
         <div className="absolute inset-x-0 top-1/2 h-[1px] bg-slate-950/80 z-20 shadow-xs"></div>
 
@@ -41,7 +49,11 @@ export default function FlipCard({ value, label }: FlipCardProps) {
         {/* Current Digit */}
         <span
           key={currentVal}
-          className={`font-mono text-2xl min-[380px]:text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white via-rose-100 to-rose-300 drop-shadow-[0_2px_12px_rgba(255,77,109,0.5)] tracking-wider ${
+          className={`font-mono ${
+            isThreeDigits
+              ? "text-xl min-[380px]:text-2xl sm:text-3xl md:text-4xl tracking-tight sm:tracking-normal"
+              : "text-2xl min-[380px]:text-3xl sm:text-4xl md:text-5xl tracking-wider"
+          } font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white via-rose-100 to-rose-300 drop-shadow-[0_2px_12px_rgba(255,77,109,0.5)] ${
             isFlipping ? "animate-flipDown" : ""
           }`}
         >
