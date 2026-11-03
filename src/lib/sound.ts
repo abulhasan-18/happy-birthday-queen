@@ -154,6 +154,114 @@ class SoundFX {
     } catch {}
   }
 
+  // Cosmic Starlight harp chord note (Act 2 Constellation)
+  public playStarlightNote(step: number = 0) {
+    this.initCtx();
+    if (!this.ctx) return;
+
+    try {
+      // Ethereal pentatonic scale: C5, D5, E5, G5, A5, C6, D6, E6
+      const scale = [523.25, 587.33, 659.25, 783.99, 880.0, 1046.5, 1174.66, 1318.51];
+      const freq = scale[step % scale.length];
+      const now = this.ctx.currentTime;
+
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, now);
+      osc.frequency.exponentialRampToValueAtTime(freq * 1.01, now + 0.4);
+
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.55);
+    } catch {}
+  }
+
+  // Telescope lens focus chime (Act 1 Telescope)
+  public playTelescopeFocus() {
+    this.initCtx();
+    if (!this.ctx) return;
+
+    try {
+      const notes = [440, 554.37, 659.25, 880];
+      notes.forEach((freq, idx) => {
+        if (!this.ctx) return;
+        const now = this.ctx.currentTime + idx * 0.05;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(freq, now);
+
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.4);
+      });
+    } catch {}
+  }
+
+  // Supernova cosmic chime swell (Act 3 Supernova)
+  public playSupernova() {
+    this.initCtx();
+    if (!this.ctx) return;
+
+    try {
+      const now = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(220, now);
+      osc.frequency.exponentialRampToValueAtTime(880, now + 0.8);
+
+      gain.gain.setValueAtTime(0.02, now);
+      gain.gain.linearRampToValueAtTime(0.15, now + 0.4);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 1.2);
+    } catch {}
+  }
+
+  // Shooting star sparkle whoosh (Act 4 Lanterns / Shooting Stars)
+  public playShootingStar() {
+    this.initCtx();
+    if (!this.ctx) return;
+
+    try {
+      const now = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(1200, now);
+      osc.frequency.exponentialRampToValueAtTime(320, now + 0.45);
+
+      gain.gain.setValueAtTime(0.1, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.45);
+    } catch {}
+  }
+
   // Romantic music box loop - plays forever
   public startMusic() {
     if (this.isPlayingMusic) return;
