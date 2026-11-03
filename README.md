@@ -62,11 +62,9 @@
 
 | Route | Description |
 | :--- | :--- |
-| **`/`** | **Main Countdown Page:** Targets Nov 2nd 00:00:00 IST. Automatically unlocks into the full gift on her birthday and locks back up for next year! |
-| **`/?preview=true`** | **Instant Gift Preview:** Bypasses the countdown for immediate viewing of Chapter I. |
-| **`/demo`** | **10-Second Flip Demo:** Counts down `10, 9, 8...` with 3D flip cards, bursts confetti, and unlocks the gift. |
-| **`/surprise`** | **Viral Envelope Storybook (Canva/Pinterest style):** Interactive wax seal envelope with sleeping cat, polaroids, Queen moods, wish cake, and love letter. |
-| **`/year2`** | **Chapter II — The Royal Constellation:** 4-Act cosmic journey (Astrolabe telescope, Crown star linker, Supernova orbits, and Floating galaxy lanterns). |
+| **`/`** | **Main Countdown Page:** Targets Nov 2nd 00:00:00 IST. Automatically unlocks into the **Viral Wax-Seal Envelope Surprise** when Her Majesty's birthday arrives! |
+| **`/?preview=true`** | **Instant Gift Preview:** Bypasses the countdown for immediate viewing of the Envelope Surprise. |
+| **`/demo`** | **Live Demo Route:** Instant access to the viral wax-seal envelope storybook (sleeping cat, polaroids, Queen moods, wish cake, and love letter). |
 
 ---
 
