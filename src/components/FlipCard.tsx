@@ -31,29 +31,29 @@ export default function FlipCard({ value, label }: FlipCardProps) {
 
   return (
     <div className="flex flex-col items-center">
-      {/* 3D Flip Card Container */}
+      {/* 3D Flip Card Container Styled to Match the Letter Envelope */}
       <div
         className={`relative ${
           isThreeDigits
             ? "w-[4.2rem] min-[380px]:w-[4.8rem] sm:w-28 md:w-32 px-1"
             : "w-[3.5rem] min-[380px]:w-[3.9rem] sm:w-22 md:w-26"
-        } h-[4.5rem] min-[380px]:h-[5rem] sm:h-26 md:h-30 rounded-xl sm:rounded-2xl bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 border border-rose-500/30 shadow-[0_6px_25px_rgba(255,77,109,0.25)] flex items-center justify-center select-none overflow-hidden perspective-500 transition-all duration-300`}
+        } h-[4.5rem] min-[380px]:h-[5rem] sm:h-26 md:h-30 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#FFFDF9] via-[#F4EBD9] to-[#EAE0CD] border-2 border-[#D7C9B1] shadow-[0_8px_25px_rgba(180,160,130,0.35),_0_2px_8px_rgba(244,63,94,0.12)] flex items-center justify-center select-none overflow-hidden perspective-500 transition-all duration-300`}
       >
-        {/* Subtle Horizontal Divider line across middle */}
-        <div className="absolute inset-x-0 top-1/2 h-[1px] bg-slate-950/80 z-20 shadow-xs"></div>
+        {/* Subtle Horizontal Divider line across middle (envelope crease style) */}
+        <div className="absolute inset-x-0 top-1/2 h-[1.5px] bg-[#C8B8A0]/70 z-20 shadow-2xs"></div>
 
-        {/* Subtle Corner Highlights */}
-        <div className="absolute top-1 left-1.5 w-1 h-1 rounded-full bg-rose-400/40"></div>
-        <div className="absolute top-1 right-1.5 w-1 h-1 rounded-full bg-rose-400/40"></div>
+        {/* Subtle Corner Wax Dots (matching the pink wax seal) */}
+        <div className="absolute top-1.5 left-2 w-1 h-1 rounded-full bg-rose-400/70"></div>
+        <div className="absolute top-1.5 right-2 w-1 h-1 rounded-full bg-rose-400/70"></div>
 
-        {/* Current Digit */}
+        {/* Current Digit (Rich Wax Seal Rose / Ruby Red) */}
         <span
           key={currentVal}
           className={`font-mono ${
             isThreeDigits
               ? "text-xl min-[380px]:text-2xl sm:text-3xl md:text-4xl tracking-tight sm:tracking-normal"
               : "text-2xl min-[380px]:text-3xl sm:text-4xl md:text-5xl tracking-wider"
-          } font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white via-rose-100 to-rose-300 drop-shadow-[0_2px_12px_rgba(255,77,109,0.5)] ${
+          } font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-[#BE123C] via-[#E11D48] to-[#9F1239] drop-shadow-[0_1px_4px_rgba(190,18,60,0.3)] ${
             isFlipping ? "animate-flipDown" : ""
           }`}
         >
@@ -61,8 +61,8 @@ export default function FlipCard({ value, label }: FlipCardProps) {
         </span>
       </div>
 
-      {/* Label (Days, Hours, Mins, Secs) */}
-      <span className="mt-1.5 text-[10px] min-[380px]:text-[11px] sm:text-xs font-serif uppercase tracking-wider sm:tracking-widest text-rose-200/80 font-semibold">
+      {/* Label (Days, Hours, Mins, Secs) in Warm Stone Typography */}
+      <span className="mt-1.5 text-[10px] min-[380px]:text-[11px] sm:text-xs font-serif uppercase tracking-wider sm:tracking-widest text-stone-600 font-semibold">
         {label}
       </span>
     </div>

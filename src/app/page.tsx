@@ -36,11 +36,17 @@ export default function Home() {
   }
 
   return (
-    <main className="relative min-h-screen w-full bg-slate-950 text-slate-100 flex flex-col items-center justify-start overflow-x-hidden">
-      {/* Ambient background lighting */}
-      <div className="fixed top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+    <main
+      className="relative min-h-screen w-full bg-[#FAF6EE] text-stone-800 flex flex-col items-center justify-start overflow-x-hidden"
+      style={{
+        backgroundImage: "radial-gradient(#d3c7b5 1px, transparent 1px)",
+        backgroundSize: "24px 24px",
+      }}
+    >
+      {/* Soft warm ambient lighting matching envelope palette */}
+      <div className="fixed top-0 left-1/4 w-[420px] h-[420px] bg-amber-200/25 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
       <div
-        className="fixed bottom-1/4 right-1/4 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"
+        className="fixed bottom-1/4 right-1/4 w-[420px] h-[420px] bg-rose-200/25 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"
         style={{ animationDelay: "2s" }}
       ></div>
 

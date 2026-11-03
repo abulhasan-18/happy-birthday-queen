@@ -129,17 +129,17 @@ export default function BirthdayCountdown({ onUnlock }: BirthdayCountdownProps) 
   return (
     <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-center p-4 sm:p-8 text-center select-none animate-fadeIn">
       {/* Royal Sentence */}
-      <p className="text-base sm:text-xl font-serif italic text-rose-200/90 max-w-lg mb-8 sm:mb-12 drop-shadow-sm">
+      <p className="text-base sm:text-xl font-serif italic text-stone-700 max-w-lg mb-8 sm:mb-12 drop-shadow-2xs">
         &ldquo;The royal doors unlock when Her Majesty’s special day arrives...&rdquo;
       </p>
 
       {/* FLIP CLOCK CONTAINER */}
-      <div className="flex items-center justify-center gap-1 min-[380px]:gap-2 sm:gap-4 md:gap-6 flex-nowrap max-w-full px-1">
+      <div className="flex items-center justify-center gap-1.5 min-[380px]:gap-2.5 sm:gap-4 md:gap-6 flex-nowrap max-w-full px-1">
         {/* DAYS FLIP CARD: Only shown when days > 0 (Never shows 0 days!) */}
         {timeLeft.days > 0 && (
           <>
             <FlipCard value={timeLeft.days} label={timeLeft.days === 1 ? "Day" : "Days"} />
-            <span className="text-lg sm:text-3xl text-rose-400/80 font-bold mb-3 sm:mb-6 select-none">:</span>
+            <span className="text-xl sm:text-3xl text-rose-500 font-bold mb-3 sm:mb-6 select-none">:</span>
           </>
         )}
 
@@ -147,13 +147,13 @@ export default function BirthdayCountdown({ onUnlock }: BirthdayCountdownProps) 
         {(timeLeft.days > 0 || timeLeft.hours > 0) && (
           <>
             <FlipCard value={timeLeft.hours} label="Hours" />
-            <span className="text-lg sm:text-3xl text-rose-400/80 font-bold mb-3 sm:mb-6 select-none">:</span>
+            <span className="text-xl sm:text-3xl text-rose-500 font-bold mb-3 sm:mb-6 select-none">:</span>
           </>
         )}
 
         {/* MINUTES FLIP CARD */}
         <FlipCard value={timeLeft.minutes} label="Mins" />
-        <span className="text-lg sm:text-3xl text-rose-400/80 font-bold mb-3 sm:mb-6 select-none">:</span>
+        <span className="text-xl sm:text-3xl text-rose-500 font-bold mb-3 sm:mb-6 select-none">:</span>
 
         {/* SECONDS FLIP CARD (Flips every second!) */}
         <FlipCard value={timeLeft.seconds} label="Secs" />
@@ -161,7 +161,7 @@ export default function BirthdayCountdown({ onUnlock }: BirthdayCountdownProps) 
 
       {/* Bottom Dedication: With Love, Smokiee • Always & Forever Love */}
       <div className="mt-12 sm:mt-16 flex flex-col items-center">
-        <p className="text-sm sm:text-base italic font-serif text-rose-300 flex items-center gap-1.5">
+        <p className="text-sm sm:text-base italic font-serif text-stone-600 flex items-center gap-1.5">
           <span>With Love, Smokiee • Always &amp; Forever Love</span>
           <Heart className="w-4 h-4 fill-rose-500 text-rose-500 inline animate-pulse" />
         </p>
